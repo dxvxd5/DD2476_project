@@ -27,6 +27,7 @@ class Searcher:
             file_name,
             file_url,
             file_content,
+            file_ext
         ):
             self.stars = stars
             self.from_kth = from_kth
@@ -36,7 +37,8 @@ class Searcher:
             self.repo_forks = repo_forks
             self.file_name = file_name
             self.file_url = file_url
-            self.file_content = file_content.decode()
+            self.file_content = file_content
+            self.file_ext = file_ext
 
         def __str__(self):
             return "File %s \n from repo %s, stars: %d, forks: %d, from_kth: %s, course: %s" % (
@@ -208,6 +210,7 @@ class Searcher:
                             repo.forks_count,
                             file_content.name,
                             file_content.html_url,
-                            file_content.decoded_content,
+                            file_content.decoded_content.decode(),
+                            file_ext
                         )
                         self.uploader(file)
