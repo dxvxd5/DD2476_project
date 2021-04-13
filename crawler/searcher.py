@@ -36,8 +36,7 @@ class Searcher:
             self.repo_forks = repo_forks
             self.file_name = file_name
             self.file_url = file_url
-            # The content is a bytestring
-            self.file_content = file_content
+            self.file_content = file_content.decode()
 
         def __str__(self):
             return "File %s \n from repo %s, stars: %d, forks: %d, from_kth: %s, course: %s" % (
@@ -158,7 +157,7 @@ class Searcher:
                     # Get the repos corresponding to the query
                     repositories = self.github.search_repositories(query)
 
-                    while repo_count < self.repo_per_query:
+                    while repo_count < self.repo_per_query or repo_index < repositories.totalCount:
                         repository = repositories[repo_index]
 
                         if repository.id in self.checked_repos or repository.name in self.avoid_repos:
