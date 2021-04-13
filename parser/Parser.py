@@ -2,6 +2,7 @@ import ast
 from elasticsearch_dsl import connections
 import json
 
+connection = connections.create_connection(hosts=['localhost'], timeout=20)
 
 class Parser:
     """
@@ -30,12 +31,12 @@ class Parser:
                 code_block = '\n'.join(lines[start - 1:end])
                 functionObject = FunctionObject(node.name, code_block, file.repo_name, file.repo_url, file.stars, file.from_kth,
                                                 file.course)
-                yield functionObject
+                connection.index(index="dd2476_project", body=json.dumps(functionObject.__dict__))
 
         if raw_script:
-            raw_object = FunctionObject('Raw - ' + file, text, file.repo_name, file.file_url, file.stars, file.from_kth,
+            raw_object = FunctionObject('Raw - ' + file.repo_name, text, file.repo_name, file.file_url, file.stars, file.from_kth,
                                         file.course)
-            yield raw_object
+            connection.index(index="dd2476_project", body=json.dumps(raw_object.__dict__))
 
     def hello(self, string):
         print(string)
