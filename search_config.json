@@ -1,0 +1,8 @@
+{
+    "languages":["python", "jupyter notebook"],
+    "extensions":[".py",".ipynb"],
+    "avoid_files":["__init__"],
+    "avoid_repos":["keras","tensorflow"],
+    "github_access_token":"YOUR_KEY",
+    "repo_per_query":1
+}
