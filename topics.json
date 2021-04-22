@@ -1,0 +1,10 @@
+{
+    "DD2424":{
+        "keywords":["deep learning", "data science"],
+        "isKTHCourse":true
+    },
+    "DD2476":{
+        "keywords":["information retrieval", "search engines"],
+        "isKTHCourse":true
+    }
+}
