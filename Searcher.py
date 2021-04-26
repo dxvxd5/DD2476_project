@@ -31,7 +31,8 @@ class Searcher:
                         "query": query,
                         "fields": [
                             "function_code",
-                            "function_name"
+                            "function_name",
+                            "metastring"
                         ],
                         "minimum_should_match": "80%"
                     }
