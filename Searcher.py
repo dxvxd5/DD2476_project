@@ -48,7 +48,7 @@ class Searcher:
                     }
                 }
             )
-        test = self.client.search(index='dd2476_project_test', body=temp)
+        test = self.client.search(index='dd2476_project', body=temp)
         return test['hits']['hits']
         
        
