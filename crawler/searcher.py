@@ -159,7 +159,7 @@ class Searcher:
                     # Get the repos corresponding to the query
                     repositories = self.github.search_repositories(query)
 
-                    while repo_count < self.repo_per_query or repo_index < repositories.totalCount:
+                    while repo_count < self.repo_per_query and repo_index < repositories.totalCount:
                         repository = repositories[repo_index]
 
                         if repository.id in self.checked_repos or repository.name in self.avoid_repos:
