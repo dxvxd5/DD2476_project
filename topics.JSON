@@ -1,0 +1,89 @@
+{
+  "DD2476": {
+    "keywords": ["information retrieval", "search engines", "pagerank"],
+    "isKTHCourse": true
+  },
+  "DT2119": {
+    "keywords": [
+      "speech recognition",
+      "speaker recognition",
+      "GHMM",
+      "mfccs",
+      "Mel coefficients"
+    ],
+    "isKTHCourse": true
+  },
+  "DD2424": {
+    "keywords": [
+      "deep learning",
+      "data science",
+      "gan",
+      "cnn",
+      "lstm",
+      "pattern recognition"
+    ],
+    "isKTHCourse": true
+  },
+  "DD2421": {
+    "keywords": ["machine learning", "decision trees"],
+    "isKTHCourse": true
+  },
+  "DD2434": {
+    "keywords": ["dimensionality reduction", "graphical models"],
+    "isKTHCourse": true
+  },
+  "DD2380": {
+    "keywords": ["artificial intelligence", "ai", "hmm", ""],
+    "isKTHCourse": true
+  },
+  "DD2412": {
+    "keywords": [
+      "representation learning",
+      "higher order learning",
+      "adversarial learning"
+    ],
+    "isKTHCourse": true
+  },
+  "DD2410": {
+    "keywords": [
+      "robotics",
+      "homogeneous transforms",
+      "planning",
+      "inverse kinematics"
+    ],
+    "isKTHCourse": true
+  },
+  "DD2437": {
+    "keywords": [
+      "perceptron",
+      "self-organizing map",
+      "hopfield network",
+      "deep belief network",
+      "boltzmann machine"
+    ],
+    "isKTHCourse": true
+  },
+  "DD2418": {
+    "keywords": ["language engineering", "NLP", "logistic regression", ""],
+    "isKTHCourse": true
+  },
+  "EL2805": {
+    "keywords": [
+      "reinforcement learning",
+      "Q-Learning",
+      "markov chains",
+      "dynamic programming",
+      "Deep Q-learning",
+      "markov decision process"
+    ],
+    "isKTHCourse": true
+  },
+  "ID2222": {
+    "keywords": ["data mining", "graph theory", "clustering"],
+    "isKTHCourse": true
+  },
+  "ID2223": {
+    "keywords": ["scalable machine learning", "spark"],
+    "isKTHCourse": true
+  }
+}
