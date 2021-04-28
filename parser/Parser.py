@@ -17,17 +17,18 @@ class Parser:
         # Get the file content
         text = file.file_content
 
-        # Convert if notbook
-        if file.file_ext == '.ipynb':
-            text = self.notebook_to_py(text)
-
-        # Flag to save the full script if no funtion
-        raw_script = True
-
-        # Split the line to extract the code block later
-        lines = text.splitlines()
-
         try:
+            # Convert if notbook
+            if file.file_ext == '.ipynb':
+                text = self.notebook_to_py(text)
+
+            # Flag to save the full script if no funtion
+            raw_script = True
+
+            # Split the line to extract the code block later
+            lines = text.splitlines()
+
+
             # Extract and loop through the nodes in the file
             p = ast.parse(text)
             for node in ast.walk(p):
@@ -72,16 +73,16 @@ class Parser:
         output = ''
         if j["nbformat"] >= 4:
             for i, cell in enumerate(j["cells"]):
-                output += ("#cell " + str(i) + "\n")
+                #output += ("#cell " + str(i) + "\n")
                 for line in cell["source"]:
                     if cell["cell_type"] == 'code':
                         output += line
                 output += '\n\n'
         else:
             for i, cell in enumerate(j["worksheets"][0]["cells"]):
-                output += ("#cell " + str(i) + "\n")
-                for line in cell["input"]:
-                    if cell["cell_type"] == 'code':
+                #output += ("#cell " + str(i) + "\n")
+                if cell["cell_type"] == 'code':
+                    for line in cell["input"]:
                         output += line
                 output += '\n\n'
 

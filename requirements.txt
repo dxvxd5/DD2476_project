@@ -9,3 +9,5 @@ urllib3==1.26.4
 wrapt==1.12.1
 elasticsearch-dsl==7.3.0
 comment_parser==1.2.3
+kivy==2.0.0
+kivymd==0.104.1
