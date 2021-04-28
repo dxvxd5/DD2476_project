@@ -201,16 +201,19 @@ class Searcher:
                     #? The Github API file up to 1MB in size
                     # 1024*1024 = 1048576
                     if (file_content.size < 1048576):
-                        file = Searcher.File(
-                            repo.stargazers_count,
-                            from_kth,
-                            course_name,
-                            repo.name,
-                            repo.html_url,
-                            repo.forks_count,
-                            file_content.name,
-                            file_content.html_url,
-                            file_content.decoded_content.decode(),
-                            file_ext
-                        )
-                        self.uploader(file)
+                        try:
+                            file = Searcher.File(
+                                repo.stargazers_count,
+                                from_kth,
+                                course_name,
+                                repo.name,
+                                repo.html_url,
+                                repo.forks_count,
+                                file_content.name,
+                                file_content.html_url,
+                                file_content.decoded_content.decode(),
+                                file_ext
+                            )
+                            self.uploader(file)
+                        except AssertionError:
+                            continue
