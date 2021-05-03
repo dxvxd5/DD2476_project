@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "dce1ab84-c137-4f96-bbc4-71ed822b9121",
+		"name": "DD2476 project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Mapping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Close",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9200/dd2476_project/_close?wait_for_active_shards=0",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"dd2476_project",
+						"_close"
+					],
+					"query": [
+						{
+							"key": "wait_for_active_shards",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Open",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9200/dd2476_project/_open",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"dd2476_project",
+						"_open"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Settings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9200/dd2476_project/_settings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"dd2476_project",
+						"_settings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create index",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"settings\": {\n    \"analysis\": {\n      \"analyzer\": {\n        \"code_analyzer\": {\n          \"tokenizer\": \"code_tokenizer\",\n          \"filter\":[\n              \"lowercase\"\n          ]\n        },\n        \"course_analyzer\": {\n            \"tokenizer\": \"course_tokenizer\",\n            \"filter\":[\n              \"lowercase\"\n          ]\n        }\n      },\n      \"tokenizer\": {\n        \"code_tokenizer\": {\n          \"type\": \"ngram\",\n          \"min_gram\": 3,\n          \"max_gram\": 3,\n          \"token_chars\": [\n            \"letter\",\n            \"digit\"\n          ]\n        },\n        \"course_tokenizer\": {\n            \"type\": \"ngram\",\n            \"min_gram\": 2,\n            \"max_gram\": 2,\n            \"token_chars\": [\n                \"letter\",\n                \"digit\"\n            ]\n        }\n      }\n    }\n  },\n    \"mappings\": {\n        \"properties\": {\n                \"function_code\": {\n                    \"type\": \"text\",\n                    \"analyzer\":\"code_analyzer\",\n                    \"fields\": {\n                        \"keyword\": {\n                            \"type\": \"keyword\",\n                            \"ignore_above\": 256\n                        }\n                    }\n                },\n                \"function_name\": {\n                    \"type\": \"text\",\n                    \"analyzer\":\"code_analyzer\",\n                    \"fields\": {\n                        \"keyword\": {\n                            \"type\": \"keyword\",\n                            \"ignore_above\": 256\n                        }\n                    }\n                },\n                \"isKth\": {\n                    \"type\": \"boolean\"\n                },\n                \"kth_course_code\": {\n                    \"type\": \"text\",\n                    \"analyzer\":\"course_analyzer\",\n                    \"fields\": {\n                        \"keyword\": {\n                            \"type\": \"keyword\",\n                            \"ignore_above\": 256\n                        }\n                    }\n                },\n                \"repo_name\": {\n                    \"type\": \"text\",\n                    \"fields\": {\n                        \"keyword\": {\n                            \"type\": \"keyword\",\n                            \"ignore_above\": 256\n                        }\n                    }\n                },\n                \"repo_stars\": {\n                    \"type\": \"long\"\n                },\n                \"repo_url\": {\n                    \"type\": \"text\",\n                    \"fields\": {\n                        \"keyword\": {\n                            \"type\": \"keyword\",\n                            \"ignore_above\": 256\n                        }\n                    }\n                },\n                \"metastring\": {\n                    \"type\": \"text\",\n                    \"analyzer\":\"course_analyzer\",\n                    \"fields\": {\n                        \"keyword\": {\n                            \"type\": \"keyword\",\n                            \"ignore_above\": 256\n                        }\n                    }\n                }\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9200/dd2476_project/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9200",
+					"path": [
+						"dd2476_project",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
