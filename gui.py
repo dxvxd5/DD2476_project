@@ -65,12 +65,16 @@ class KApp(MDApp):
         
     def on_row_press(self, instance_table, instance_row):
         '''Called when a table row is clicked.'''
+        row_nr = self.data_tables.table_data._rows_number
+        per_row = self.data_tables.table_data.rows_num
+        
+        idx = int(instance_row.index/6) + row_nr*per_row
         def openlink(self,link):
             webbrowser.open(url)
 
         
-        code = self.result[int(instance_row.index/5)]['_source']['function_code']
-        url = self.result[int(instance_row.index/5)]['_source']['repo_url']
+        code = self.result[idx]['_source']['function_code']
+        url = self.result[idx]['_source']['repo_url']
         content = RelativeLayout()
         url_view = ScrollView(pos_hint={"x":0.0, "y": .45}, size_hint=(1,1))
         url_content = Label(pos_hint={"x": 0.0, "top": 0},text="[u][ref=link]{}[/ref][/u]".format(url),markup=True, color=[0,0,1,1], size_hint_x= None)
@@ -88,7 +92,7 @@ class KApp(MDApp):
         code_view.add_widget(code_content)
 
         content.add_widget(code_view)
-        popup = Popup(title=self.result[int(instance_row.index/5)]['_source']['function_name'],
+        popup = Popup(title=self.result[idx]['_source']['function_name'],
                         content=content, 
                         size_hint=(.8, .8),
                         background_color=[255,255,255,1],
