@@ -132,14 +132,17 @@ class Searcher:
         """
 
         topic = self.get_next_topic()
+        print('**** Searching topic %s' % topic, end=' ')
         while topic is not None:
             # To each topic is associated a list of keywords.
             # We search for all those keywords
             # the topic name is also a keyword to search
             keywords = [topic.topic] + topic.keywords
+            print('%d keywords'%len(keywords))
 
             for keyword in keywords:
                 # get the queries for each language
+                print('\tCurrent keyword: %s' % keyword)
                 queries = self.build_query(keyword)
 
                 # If the current keyword is the topic name,
@@ -151,6 +154,7 @@ class Searcher:
                     from_kth = False
 
                 for query in queries:
+                    print('\t\tCurrent query: %s' % query)
                     # the total number of uploaded repos for this query
                     repo_count = 0
                     # the index of the repo in the result list
@@ -166,6 +170,8 @@ class Searcher:
                             repo_index += 1
                             continue
 
+                        print('\t\t\tUploading repo %s' % repository, end=' ')
+
                         if from_kth:
                             course_name = topic.topic
                         else:
@@ -176,7 +182,9 @@ class Searcher:
                         self.checked_repos.update({repository.id: True})
                         repo_index += 1
                         repo_count += 1
-
+                        print('Done:  %d/%d' % (repo_count, self.repo_per_query))
+                        
+            print('Topic %s uploaded successfully' % topic)
             topic = self.get_next_topic()
 
     def upload_repo_files(self, repo, from_kth, course_name):
