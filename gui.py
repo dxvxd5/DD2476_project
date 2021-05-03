@@ -24,7 +24,7 @@ from kivymd.uix.button import MDRaisedButton as Button
 
 
 class KApp(MDApp):
-    result = None#[{'_index': 'dd2476_project', '_type': '_doc', '_id': 'pClQ6XgBm3fS_mHj1Qlt', '_score': 0.6931471, '_source': {'function_name': 'quicksort', 'function_code': 'quicksort1', 'repo_name': 'Test1', 'repo_url': 'test1', 'repo_stars': 0, 'isKth': True, 'kth_course_code': 'DD2476'}},{'_index': 'dd2476_project', '_type': '_doc', '_id': 'pSlR6XgBm3fS_mHjdgkA', '_score': 0.6931471, '_source': {'function_name': 'quicksort', 'function_code': 'quicksort2', 'repo_name': 'Test2', 'repo_url': 'test2', 'repo_stars': 5, 'isKth': False, 'kth_course_code': ''}},{'_index': 'dd2476_project', '_type': '_doc', '_id': 'pylS6XgBm3fS_mHjIQkV', '_score': 0.6931471, '_source': {'function_name': 'bubblesort', 'function_code': 'bubblesort2', 'repo_name': 'Test4', 'repo_url': 'test4', 'repo_stars': 0, 'isKth': False, 'kth_course_code': ''}}]
+    result = None
     
     def build(self):
         Window.clearcolor=hex('#f6f6f6')
@@ -54,7 +54,7 @@ class KApp(MDApp):
     def submit(self, obj):
         
         self.layout.clear_widgets()
-        #print("Searching for ", self.textQ.text, self.courseQ.text)
+        print("Searching for ", self.textQ.text, self.courseQ.text)
         self.result = self.searcher.search(self.textQ.text, self.courseQ.text)
         self.create_datatable()
         self.add_widgets()
@@ -74,20 +74,21 @@ class KApp(MDApp):
                     f"{self.result[i]['_source']['function_name']}",
                     f"{self.result[i]['_source']['repo_name']}",
                     f"{self.isKth(self.result[i]['_source']['isKth'])}",
-                    f"{self.result[i]['_source']['kth_course_code']}",
+                    f"{self.getCourseCode(self.result[i]['_source']['kth_course_code'])}",
+                    f"{self.result[i]['_score']:.3f}",
                 )
                 for i in range(len(self.result))
             ]
-            if(len(self.result) == 1):
-                row_data.append(("","","","",""))
+            if(len(self.result)%5 == 1):
+                row_data.append(("","","","","",""))
             
         else:
             row_data=[
                # ("","","","","",)
             ]
         self.data_tables = MDDataTable(
-            pos_hint={"x": 0.1, "top": 0.75},
-            size_hint=(0.8, 0.62),
+            pos_hint={"x": 0.075, "top": 0.75},
+            size_hint=(0.85, 0.62),
             use_pagination=True,
             #agination_menu_height='0',
             rows_num=5,
@@ -98,6 +99,7 @@ class KApp(MDApp):
                 ("Repo", dp(30)),
                 ("", dp(7)),
                 ("Course", dp(15)),
+                ("Score", dp(15))
             ],
             row_data=row_data,
         )
@@ -106,7 +108,8 @@ class KApp(MDApp):
     def isKth(self,bool):
         return "K" if bool else ""
 
-
+    def getCourseCode(self, code):
+        return code if code is not None else ""
 
 if __name__ == '__main__':
     KApp().run()
