@@ -25,7 +25,7 @@
     "isKTHCourse": true
   },
   "DD2421": {
-    "keywords": ["machine learning", "decision trees"],
+    "keywords": ["machine learning", "decision trees", "ADABoost", "logistic regression", "PCA", "Bagging", "classifier"],
     "isKTHCourse": true
   },
   "DD2434": {
