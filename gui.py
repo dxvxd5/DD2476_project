@@ -1,5 +1,7 @@
 import kivy
+from kivy.core.text import markup
 from kivy.uix.layout import Layout
+from kivy.uix.scrollview import ScrollView
 import Searcher
 kivy.require('2.0.0') # replace with your current kivy version !
 
@@ -20,8 +22,9 @@ from kivymd.uix.datatables import MDDataTable
 from kivy.metrics import dp
 from kivymd.uix.textfield import MDTextField
 from kivymd.uix.button import MDRaisedButton as Button
-
-
+from kivy.uix.popup import Popup
+from kivy.uix.relativelayout import RelativeLayout
+import webbrowser
 
 class KApp(MDApp):
     result = None
@@ -54,16 +57,45 @@ class KApp(MDApp):
     def submit(self, obj):
         
         self.layout.clear_widgets()
-        print("Searching for ", self.textQ.text, self.courseQ.text)
+        
         self.result = self.searcher.search(self.textQ.text, self.courseQ.text)
         self.create_datatable()
         self.add_widgets()
-        print(self.result)
+        
         
     def on_row_press(self, instance_table, instance_row):
         '''Called when a table row is clicked.'''
-        print(self.result[int(instance_row.index/5)]['_source']['function_code'])
-        #print(instance_table, instance_row)
+        def openlink(self,link):
+            webbrowser.open(url)
+
+        
+        code = self.result[int(instance_row.index/5)]['_source']['function_code']
+        url = self.result[int(instance_row.index/5)]['_source']['repo_url']
+        content = RelativeLayout()
+        url_view = ScrollView(pos_hint={"x":0.0, "y": .45}, size_hint=(1,1))
+        url_content = Label(pos_hint={"x": 0.0, "top": 0},text="[u][ref=link]{}[/ref][/u]".format(url),markup=True, color=[0,0,1,1], size_hint_x= None)
+        url_content.bind(texture_size=url_content.setter('size'))
+        url_content.bind(size_hint_min_x=url_content.setter('width'))
+        url_content.bind(on_ref_press=openlink)
+        url_view.add_widget(url_content)
+        content.add_widget(url_view)
+
+        code_view = ScrollView(pos_hint={"x":0.0, "y": 0.0}, size_hint=(1,0.9))
+        code_content = Label(text=code, markup=True, color=[0,0,0,1], size_hint_x= None, size_hint_y=None)
+        code_content.bind(texture_size=code_content.setter('size'))
+        code_content.bind(size_hint_min_x=code_content.setter('width'))
+        code_content.bind(size_hint_min_y=code_content.setter('height'))
+        code_view.add_widget(code_content)
+
+        content.add_widget(code_view)
+        popup = Popup(title=self.result[int(instance_row.index/5)]['_source']['function_name'],
+                        content=content, 
+                        size_hint=(.8, .8),
+                        background_color=[255,255,255,1],
+                        title_color=[0,0,0,1])
+        popup.open()
+        
+
 
 
     def create_datatable(self):
