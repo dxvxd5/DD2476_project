@@ -1,20 +1,10 @@
 from elasticsearch import Elasticsearch
-from elasticsearch_dsl import Search
-from elasticsearch_dsl.connections import connections
-
-connections.create_connection(hosts=['localhost'])
 
 class Searcher:
-
-
     def __init__(self):
         self.client = Elasticsearch()
 
     def search(self, query, course_code=None):
-        
-        #q = query + " " + course_code if course_code != None else query
-        #s = Search(using=self.client, index='dd2476_project').query("regexp", query=q)#, fields=['function_name'])#, 'kth_course_code'])
-        #response = s.execute()
         temp = {
             "size":100,
             "query": {
@@ -34,7 +24,8 @@ class Searcher:
                             "function_name",
                             "metastring"
                         ],
-                        "minimum_should_match": "80%"
+                        "minimum_should_match": "80%",
+                        "type":"most_fields"
                     }
                 }
             )
@@ -52,8 +43,3 @@ class Searcher:
         test = self.client.search(index='dd2476_project', body=temp)
         return test['hits']['hits']
         
-       
-if __name__=="__main__":
-    s = Searcher()
-
-    s.search("quicksort","DD2476")
