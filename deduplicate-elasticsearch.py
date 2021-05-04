@@ -42,8 +42,11 @@ def populate_dict_of_duplicate_docs(hit):
 # dict_of_duplicate_docs data structure.
 def scroll_over_all_docs():
     for hit in helpers.scan(es, index='dd2476_project'):
-        populate_dict_of_duplicate_docs(hit)
-
+        try:
+            populate_dict_of_duplicate_docs(hit)
+        except:
+            continue
+            #print(hit['_source'])
 
 def loop_over_hashes_and_remove_duplicates():
     # Search through the hash of doc values to see if any
@@ -54,6 +57,7 @@ def loop_over_hashes_and_remove_duplicates():
         # Get the documents that have mapped to the current hasval
         #matching_docs = es.mget(index="dd2476_project", doc_type="doc", body={"ids": array_of_ids})
         q = {
+                "size":1000,
                 "query": {
                     "terms": {
                         "_id": array_of_ids 
