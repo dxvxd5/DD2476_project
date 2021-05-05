@@ -45,7 +45,7 @@ class Parser:
                     metastrings = self.get_metastrings(code_block)
 
                     # Create object to save in elasticsearch
-                    functionObject = FunctionObject(node.name, code_block, file.repo_name, file.repo_url, file.stars, file.from_kth,
+                    functionObject = FunctionObject(node.name, code_block, file.repo_name, file.file_url, file.stars, file.from_kth,
                                                     file.course, metastrings)
 
                     # Save the object to elasticsearch

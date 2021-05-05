@@ -92,8 +92,13 @@ def loop_over_hashes_and_remove_duplicates():
 
 
 def main():
-    scroll_over_all_docs()
-    loop_over_hashes_and_remove_duplicates()
+    global dict_of_duplicate_docs
+    for i in range(1000):
+        scroll_over_all_docs()
+        loop_over_hashes_and_remove_duplicates()
+        print(i)
+        dict_of_duplicate_docs = {}
+        
 
 
 main()

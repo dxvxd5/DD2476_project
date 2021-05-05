@@ -225,3 +225,5 @@ class Searcher:
                             self.uploader(file)
                         except AssertionError:
                             continue
+                        except UnicodeDecodeError:
+                            continue

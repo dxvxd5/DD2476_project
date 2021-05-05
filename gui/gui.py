@@ -2,7 +2,7 @@ import kivy
 from kivy.core.text import markup
 from kivy.uix.layout import Layout
 from kivy.uix.scrollview import ScrollView
-import Searcher
+from search_engine.Searcher import Searcher
 kivy.require('2.0.0') # replace with your current kivy version !
 
 from kivy.app import App
@@ -33,10 +33,10 @@ class KApp(MDApp):
         Window.clearcolor=hex('#f6f6f6')
         self.layout = FloatLayout()
         
-        self.searcher = Searcher.Searcher()
+        self.searcher = Searcher()
         self.textQ = MDTextField(pos_hint={"x": 0.2, "top": 0.89}, size_hint=(0.4, 0.05), text="search...")
         self.courseQ = MDTextField(pos_hint={"x": 0.62, "top": 0.89}, size_hint=(0.1, 0.05), text="code")
-        self.logo = Image(pos_hint={"x": 0, "top": 1}, size_hint=(0.2, 0.2), source='logo.png')
+        self.logo = Image(pos_hint={"x": 0, "top": 1}, size_hint=(0.2, 0.2), source='gui/logo.png')
         self.submit_button = Button(pos_hint={"x": 0.74, "top": 0.88}, size_hint=(0.2, 0.05), text='search', text_color=hex('#fffff'), md_bg_color=hex('#00579d'), on_press=self.submit)
         
         #label = Label(text='search', font_size=20, pos_hint={"x": -0.05, "y": 0.47}, color=hex("#000000"))

@@ -6,10 +6,8 @@
   "DT2119": {
     "keywords": [
       "speech recognition",
-      "speaker recognition",
       "GHMM",
-      "mfccs",
-      "Mel coefficients"
+      "mfccs"
     ],
     "isKTHCourse": true
   },
@@ -29,11 +27,11 @@
     "isKTHCourse": true
   },
   "DD2434": {
-    "keywords": ["dimensionality reduction", "graphical models"],
+    "keywords": ["dimensionality reduction", "graphical models", "isomap"],
     "isKTHCourse": true
   },
   "DD2380": {
-    "keywords": ["artificial intelligence", "ai", "hmm", ""],
+    "keywords": ["hmm", "minimax", "alpha beta pruning", "planning"],
     "isKTHCourse": true
   },
   "DD2412": {
@@ -48,7 +46,6 @@
     "keywords": [
       "robotics",
       "homogeneous transforms",
-      "planning",
       "inverse kinematics"
     ],
     "isKTHCourse": true
@@ -59,12 +56,13 @@
       "self-organizing map",
       "hopfield network",
       "deep belief network",
-      "boltzmann machine"
+      "boltzmann machine",
+      "MLP"
     ],
     "isKTHCourse": true
   },
   "DD2418": {
-    "keywords": ["language engineering", "NLP", "logistic regression", ""],
+    "keywords": ["language engineering", "NLP"],
     "isKTHCourse": true
   },
   "EL2805": {
@@ -85,5 +83,12 @@
   "ID2223": {
     "keywords": ["scalable machine learning", "spark"],
     "isKTHCourse": true
+  },
+  "sorts":{
+    "keywords":["insertion sort", "quicksort", "heapsort", "shellsort"], 
+    "isKTHCourse":false
+  }, 
+  "algorithm" : {
+    "keywords": []
   }
 }
