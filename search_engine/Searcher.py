@@ -20,7 +20,6 @@ class Searcher:
                     "multi_match": {
                         "query": query,
                         "fields": [
-                            "function_code",
                             "function_name",
                             "metastring"
                         ],
