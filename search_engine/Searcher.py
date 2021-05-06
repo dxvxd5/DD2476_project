@@ -20,8 +20,8 @@ class Searcher:
                     "multi_match": {
                         "query": query,
                         "fields": [
-                            "function_name",
-                            "metastring"
+                            "function_name^2",
+                            "metastrings"
                         ],
                         "minimum_should_match": "80%",
                         "type":"most_fields"
@@ -34,7 +34,8 @@ class Searcher:
                     "match": {
                         "kth_course_code": {
                             "query": course_code,
-                            "minimum_should_match": "20%"
+                            "minimum_should_match": "100%",
+                            "boost": "10"
                         }
                     }
                 }
