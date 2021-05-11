@@ -132,7 +132,7 @@ dmypy.json
 .vscode/
 
 # Project specific 
-search_config.json
+crawler/.settings/search_config.json
 
 # IntelliJ
 .idea
