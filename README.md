@@ -14,7 +14,7 @@ Make sure the to all the permissions to every user of that folder
 On linux and MACOS: chmod 777 (recovery folder)
 
 #### Download our index data
-Now download the zip file at this link: *link to index data*. 
+Now download the zip file at this link: [Backup](https://drive.google.com/file/d/1D7F5iBnQwOBlDnYWfRe2K8m25D9YxUlT/view?usp=sharing) 
 Unzip it into the recovery folder. 
 
 #### Edit the elastic search configuration file
@@ -45,7 +45,7 @@ You should get the following response:
 }
 ```
 
-Secondly to the address: http://localhost:9200/_snapshot/backup/krawlub/_restore
+Secondly to the address: http://localhost:9200/_snapshot/backup/krawlubv2/_restore
 You should get the following response:
 ```
 {
